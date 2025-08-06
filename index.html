@@ -4,12 +4,16 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <title>Animated Navbar</title>
 <style>
   body {
     margin: 0;
     font-family: Arial, sans-serif;
     background: #f8f8f8;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
   }
 
   nav {
@@ -17,7 +21,7 @@
     padding: 1rem 2rem;
     display: flex;
     gap: 2rem;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.12); /* More visible shadow */
   }
 
   nav a {
@@ -31,7 +35,6 @@
     margin: 0 1rem 0 1rem;
   }
 
-  /* underline effect */
   nav a::after {
     content: "";
     position: absolute;
@@ -46,6 +49,125 @@
   nav a:hover::after {
     width: 100%;
   }
+  /* Hero section */
+  .hero {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch; /* Make children fill height */
+    width: 100%;       /* make it take full width */
+    max-width: none;   /* remove max width limit */
+    margin: 0;         /* remove centering margin */
+    gap: 2rem;
+    height: 60vh; /* Set a height for the hero section */
+    background-color: rgb(71, 249, 255);
+  }
+
+  .hero-text {
+    flex: 1;
+    margin-left: 10rem;  /* Adds left margin to the text */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Center text vertically */
+  }
+
+  .tag {
+    background: #ffe0b2;
+    padding: 0.3rem 0.8rem; /* More horizontal padding */
+    border-radius: 6px;
+    font-weight: 500;
+    font-size: 0.9rem;
+    display: inline-block;
+    margin-bottom: 1rem;
+    max-width: 100px; /* Limit tag width */
+    white-space: nowrap; /* Prevent wrapping */
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .hero-text h1 {
+    font-size: 2.5rem;
+    color: #333;
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+  }
+
+  .buttons {
+    display: flex;
+    gap: 1rem;
+  }
+
+  .btn-primary, .btn-secondary {
+    padding: 0.7rem 1.4rem;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: 0.3s ease;
+  }
+
+  .btn-primary {
+    background: #2d3e50;
+    color: white;
+  }
+
+  .btn-primary:hover {
+    background: #1a252f;
+  }
+
+  .btn-secondary {
+    border: 2px solid #2d3e50;
+    color: #2d3e50;
+  }
+
+  .btn-secondary:hover {
+    background: #2d3e50;
+    color: white;
+  }
+
+  .hero-image {
+    flex: 1;
+    display: flex;
+    margin-right: 10rem;
+    align-items: flex-end; /* Align image to bottom */
+    justify-content: center;
+    height: 100%; /* Fill hero section height */
+    text-align: center;
+    padding-bottom: 0;
+  }
+
+  .hero-image img {
+    max-width: 100%;
+    height: 90%;         /* Fill most of hero section height */
+    border-radius: 12px;
+    margin-bottom: 0;
+    object-fit: contain; /* Scale image nicely */
+  }
+  /* Icons aligned bottom right */
+  footer {
+    margin-top: auto;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+    background: none; /* no box */
+  }
+
+  footer a {
+    font-size: 1.8rem;
+    color: #333;
+    transition: transform 0.3s ease, color 0.3s ease;
+  }
+
+  footer a:hover {
+    transform: scale(1.2);
+  }
+
+  footer a.discord:hover {
+    color: #5865F2; /* Discord */
+  }
+
+  footer a.slack:hover {
+    color: #4A154B; /* Slack */
+  }
 </style>
 </head>
 <body>
@@ -55,6 +177,27 @@
   <a href="#">Work</a>
   <a href="#">About</a>
 </nav>
+
+<!-- Page content -->
+<section class="hero">
+  <div class="hero-text">
+    <span class="tag">👋 Hello Y'All</span>
+    <h1>I’m Arian,<br> A math-lover<br> and Programmer</h1>
+    <div class="buttons">
+      <a href="#" class="btn-primary">View My Work</a>
+      <a href="#" class="btn-secondary">Contact Me</a>
+    </div>
+  </div>
+  <div class="hero-image">
+    <img src="./Me, but pixelated.png" alt="niko-kokawa">
+  </div>
+</section>
+
+<!-- Icons at bottom right -->
+<footer>
+  <a href="https://www.discord.gg/U3k5BsVNWg" class="discord" target="_blank"><i class="fa-brands fa-discord"></i></a>
+  <a href="https://join.slack.com/t/toxxworkspace/shared_invite/zt-3avyh3rxc-Bycc433jxOFOCzSSrXhD2A" class="slack" target="_blank"><i class="fa-brands fa-slack"></i></a>
+</footer>
 
 </body>
 </html>
