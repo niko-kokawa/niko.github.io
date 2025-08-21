@@ -260,6 +260,37 @@
   margin: 0;
   /* Remove position and top! */
 }
+
+footer.fixed-footer {
+  position: fixed;
+  right: 2.5rem;
+  bottom: 2.5rem;
+  background: none;
+  box-shadow: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 15px;
+  z-index: 100;
+}
+
+footer.fixed-footer a {
+  font-size: 2rem;
+  color: #333;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+footer.fixed-footer a:hover {
+  transform: scale(1.2);
+}
+
+footer.fixed-footer a.discord:hover {
+  color: #5865F2;
+}
+
+footer.fixed-footer a.slack:hover {
+  color: #4A154B;
+}
   </style>
 </head>
 <body>
