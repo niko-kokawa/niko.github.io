@@ -291,6 +291,97 @@ footer.fixed-footer a.discord:hover {
 footer.fixed-footer a.slack:hover {
   color: #4A154B;
 }
+
+  /* About Me Section */
+  .about-me {
+  padding: 5rem 0 5rem 0;
+  background: #ffffff;
+}
+
+.about-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4rem;
+  max-width: 1100px;
+  margin: 0 auto;
+  flex-wrap: wrap;
+}
+
+.about-social {
+  flex: 1 1 320px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  min-width: 260px;
+}
+
+.about-social h2 {
+  font-family: "Lilita One", sans-serif;
+  font-size: 2rem;
+  color: #2d3e50;
+  margin-bottom: 1.2rem;
+}
+
+.about-icons {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  margin-bottom: 1.5rem;
+}
+
+.about-icons-row {
+  display: flex;
+  gap: 1.2rem;
+}
+
+.about-icons a,
+.about-icons-row a {
+  font-size: 1.8rem;
+  color: #333;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.about-icons a:hover,
+.about-icons-row a:hover {
+  transform: scale(1.2);
+}
+
+.about-icons a.discord:hover { color: #5865F2; }
+.about-icons a.slack:hover { color: #4A154B; }
+.about-icons a.linkedin:hover { color: #0077b5; }
+.about-icons a.x:hover { color: #111; }
+.about-icons a.reddit:hover { color: #FF4500; }
+.about-icons a.github:hover,
+footer.fixed-footer a.github:hover {
+  color: #24292e;
+}
+
+.about-desc {
+  font-size: 1rem;
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+
+.about-image {
+  flex: 1;
+  min-width: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.about-image img {
+  width: 270px;
+  height: 270px;
+  object-fit: cover;
+  border-radius: 50%;
+  box-shadow: 0 4px 32px rgba(0,0,0,0.10);
+  border: 6px solid #fff;
+  background: #e0e0e0;
+}
   </style>
 </head>
 <body>
@@ -298,7 +389,7 @@ footer.fixed-footer a.slack:hover {
 <nav>
   <a href="#">Home</a>
   <a href="#work">Work</a>
-  <a href="#">About</a>
+  <a href="#about">About</a>
 </nav>
 
 <!-- Page content -->
@@ -308,7 +399,7 @@ footer.fixed-footer a.slack:hover {
     <h1>I’m Arian,<br> A math-lover<br> and Programmer</h1>
     <div class="buttons">
       <a href="#work" class="btn-primary">View My Work</a>
-      <a href="#" class="btn-secondary">Contact Me</a>
+      <a href="mailto:arian.heichl@gmail.com" class="btn-secondary">Contact Me</a>
     </div>
   </div>
   <div class="hero-image">
@@ -347,10 +438,39 @@ footer.fixed-footer a.slack:hover {
   </div>
 </section>
 
+<!-- About Me Section -->
+<section class="about-me" id="about">
+  <div class="about-container">
+    <div class="about-social">
+      <h2>Connect with me</h2>
+      <div class="about-icons">
+        <div class="about-icons-row">
+          <a href="https://x.com/niko_kokawa" class="x" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="https://www.reddit.com/user/Interesting_Gear8869/" class="reddit" target="_blank"><i class="fa-brands fa-reddit"></i></a>
+          <a href="https://github.com/niko-kokawa" class="github" target="_blank"><i class="fa-brands fa-github"></i></a>
+        </div>
+        <div class="about-icons-row">
+          <a href="https://www.discord.gg/U3k5BsVNWg" class="discord" target="_blank"><i class="fa-brands fa-discord"></i></a>
+          <a href="https://join.slack.com/t/toxxworkspace/shared_invite/zt-3avyh3rxc-Bycc433jxOFOCzSSrXhD2A" class="slack" target="_blank"><i class="fa-brands fa-slack"></i></a>
+          <a href="https://www.linkedin.com/in/your-linkedin-username" class="linkedin" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
+
+        </div>
+      </div>
+      <p class="about-desc">
+        My name is Arian, a UTM student with an interest in game development, problem-solving, and building meaningful connections. I’m passionate about creating and learning through collaboration.      </p>
+      </p>  
+    </div>
+    <div class="about-image">
+      <img src="resources/personal-picture.png" alt="Arian" />
+    </div>
+  </div>
+</section>
+
 <!-- Icons at bottom right -->
 <footer class="fixed-footer">
   <a href="https://www.discord.gg/U3k5BsVNWg" class="discord" target="_blank"><i class="fa-brands fa-discord"></i></a>
   <a href="https://join.slack.com/t/toxxworkspace/shared_invite/zt-3avyh3rxc-Bycc433jxOFOCzSSrXhD2A" class="slack" target="_blank"><i class="fa-brands fa-slack"></i></a>
+  <a href="https://www.linkedin.com/in/arian-heidarichaleshtari-371417377/" class="linkedin" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
 </footer>
 
 </body>
