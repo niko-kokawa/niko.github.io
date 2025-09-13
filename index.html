@@ -66,6 +66,63 @@
     gap: 2rem;
     height: 70vh; /* Set a height for the hero section */
     background-color: rgb(71, 249, 255);
+    position: relative;
+    overflow: hidden;
+    z-index: 0;
+  }
+
+  .hero > * {
+    position: relative;
+    z-index: 2; /* content above meteors */
+  }
+
+  /* Meteor field overlay (behind content, above bg) */
+  .meteor-field {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    overflow: hidden;
+  }
+
+  /* Single meteor */
+  .meteor {
+    position: absolute;
+    top: -10vh;
+    left: 0;
+    width: 2px;
+    height: 2px;
+    transform: rotate(-45deg); /* trail goes top-right, head bottom-left */
+    opacity: 0;
+    filter: drop-shadow(0 0 6px rgba(255,255,255,0.9));
+    will-change: transform, opacity;
+  }
+
+  .meteor::after {
+    content: "";
+    position: absolute;
+    top: 0; left: 0;
+    width: 2px; height: 2px;
+    background: #fff;
+    box-shadow: 0 0 12px 4px rgba(255,255,255,0.95); /* more opaque and larger */
+  }
+
+  .meteor::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0; /* tail starts at the head and goes right */
+    width: 160px;
+    height: 2px;
+    background: linear-gradient(90deg, #fff 0%, rgba(255,255,255,0.97) 85%, rgba(255,255,255,0.2) 100%);
+    border-radius: 2px;
+  }
+
+  /* Use per-meteor distances set via CSS variables */
+  @keyframes meteor-fall {
+    0%   { transform: translate3d(0,0,0) rotate(315deg); opacity: 0; }
+    6%   { opacity: 1; }
+    100% { transform: translate3d(var(--dx, 900px), var(--dy, 500px), 0) rotate(315deg); opacity: 0; }
   }
 
   .hero-text {
@@ -394,6 +451,7 @@ footer.fixed-footer a.github:hover {
 
 <!-- Page content -->
 <section class="hero">
+  <div class="meteor-field" aria-hidden="true"></div>
   <div class="hero-text">
     <span class="tag">👋 Hello Y'All</span>
     <h1>I’m Arian,<br> A math enthusiast<br> and Game Developer</h1>
@@ -472,5 +530,60 @@ footer.fixed-footer a.github:hover {
   <a href="https://join.slack.com/t/toxxworkspace/shared_invite/zt-3avyh3rxc-Bycc433jxOFOCzSSrXhD2A" class="slack" target="_blank"><i class="fa-brands fa-slack"></i></a>
 </footer>
 
+<script>
+(function () {
+  const field = document.querySelector('.meteor-field');
+  const hero = document.querySelector('.hero');
+  if (!field || !hero) return;
+
+  const METEOR_BURST = 22;
+
+  function spawnMeteor() {
+    const rect = hero.getBoundingClientRect();
+
+    const m = document.createElement('div');
+    m.className = 'meteor';
+
+    // Start anywhere along the top of the hero
+    const startX = Math.random() * rect.width;
+    const startY = -40 - Math.random() * 60; // just above the hero
+
+    m.style.left = `${startX}px`;
+    m.style.top = `${startY}px`;
+
+    // Diagonal travel: left and down, with equal distance for 45° angle
+    const distance = Math.min(rect.width, rect.height) * (0.7 + Math.random() * 0.3); // 70%-100% of the smaller dimension
+    m.style.setProperty('--dx', `${-distance}px`);
+    m.style.setProperty('--dy', `${distance}px`);
+
+    // Speed and delay
+    const duration = 2.0 + Math.random() * 2.0;
+    const delay = Math.random() * 1.5;
+    m.style.animation = `meteor-fall ${duration}s linear ${delay}s 1 forwards`;
+
+    field.appendChild(m);
+
+    // Cleanup
+    const total = (duration + delay) * 1000 + 200;
+    setTimeout(() => m.remove(), total);
+  }
+
+  // Initial burst
+  for (let i = 0; i < METEOR_BURST; i++) {
+    setTimeout(spawnMeteor, Math.random() * 1200);
+  }
+
+  // Continuous trickle
+  setInterval(() => {
+    const n = 1 + Math.floor(Math.random() * 3);
+    for (let i = 0; i < n; i++) setTimeout(spawnMeteor, i * 200);
+  }, 1300);
+
+  // Recompute distances on resize
+  window.addEventListener('resize', () => {
+    // no-op; new meteors will use updated rect automatically
+  });
+})();
+</script>
 </body>
 </html>
